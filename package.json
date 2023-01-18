@@ -1,0 +1,22 @@
+{
+  "name": "onion-project-chat-api",
+  "version": "1.0.0",
+  "description": "Implementation of chatAPI",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Higino/onion-project-chat-api.git"
+  },
+  "author": "Higino Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Higino/onion-project-chat-api/issues"
+  },
+  "homepage": "https://github.com/Higino/onion-project-chat-api#readme",
+  "dependencies": {
+    "openai": "^3.1.0"
+  }
+}

@@ -1,0 +1,42 @@
+name: Deploy Lambda
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master      
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build artifact
+      run: |
+        mkdir dist
+        zip -r dist/chatapi.zip node_modules/ index.js
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: AKIATPWYAURW7JQYBGFH # ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: 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 # ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-west-1
+
+    - name: Deploy function
+      run: |
+        aws lambda update-function-code --function-name chat --zip-file fileb://dist/chatapi.zip --region eu-west-1
