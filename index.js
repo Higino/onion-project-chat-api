@@ -1,7 +1,7 @@
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: "YOUR_API_KEY",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 module.exports.configuration = configuration;
 
@@ -16,8 +16,8 @@ exports.handler = async (event) => {
         statusCode: 400,
         body: JSON.stringify({error: 'prompt is required', description: prompt}),
       };
-  }
-  return post(prompt);
+    }
+    return post(prompt);
   } catch (err) {
     console.log("Event with input: " + event.body + ". Error: " + err); // output to netlify function log
     return {
