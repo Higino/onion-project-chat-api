@@ -29,7 +29,8 @@ jobs:
       run: |
         mkdir dist
         zip -r dist/chatapi.zip node_modules/ index.js
-
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
