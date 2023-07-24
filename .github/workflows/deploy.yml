@@ -25,6 +25,12 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: Check if OPENAI_API_KEY is set
+      run: |
+        echo "API Key is set: ${{ env.OPENAI_API_KEY != '' }}"
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
     - name: Build artifact
       run: |
         mkdir dist
