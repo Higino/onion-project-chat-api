@@ -89,7 +89,7 @@ async function post(prompt) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        error: error.response ? error.response.data : 'Internal Server Error -> '
+        error: error.response ? error.response.data : 'Internal Server Error'
       }),
     };
 
