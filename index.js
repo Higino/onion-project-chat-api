@@ -9,14 +9,22 @@ const openai = new OpenAIApi(configuration);
 module.exports.openai = openai;
   
 exports.handler = async (event) => {
-  const {prompt} = JSON.parse(event.body)
-  if( !prompt ) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({error: 'prompt is required', description: prompt}),
-    };
+  try {
+    const {prompt} = JSON.parse(event.body)
+    if( !prompt ) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({error: 'prompt is required', description: prompt}),
+      };
   }
   return post(prompt);
+  } catch (err) {
+    console.log("Event with input: " + event.body + ". Error: " + err); // output to netlify function log
+    return {
+      statusCode: 500,
+      body: JSON.stringify({error: err.message}), // Could be a custom message or object i.e. JSON.stringify(err)
+    };
+  }
 };
 
 async function post(prompt) {
