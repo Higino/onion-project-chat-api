@@ -70,7 +70,7 @@ async function post(prompt) {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({response: completion.data.choices[0].message}),
+      body: JSON.stringify({response: openaiResponse.data.choices[0].message}),
     };
     
     return response;
