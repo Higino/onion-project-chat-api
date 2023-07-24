@@ -58,7 +58,7 @@ async function post(prompt) {
                 "User: " + prompt + "\nOtis: ";
 
   try {
-    const openaiResponse = await openai.createCompletion({
+    const openaiResponse = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       prompt: improvedPrompt,
       temperature: 0.7,
