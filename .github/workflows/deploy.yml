@@ -48,3 +48,6 @@ jobs:
     - name: Deploy function
       run: |
         aws lambda update-function-code --function-name chat --zip-file fileb://dist/chatapi.zip --region eu-west-1
+        aws lambda update-function-configuration --function-name chat --region eu-west-1 --environment Variables="{OPENAI_API_KEY=$OPENAI_API_KEY}"
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
