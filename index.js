@@ -61,7 +61,8 @@ async function post(prompt) {
   try {
     const openaiResponse = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{"role": "system", "content": systemContent}, {"role": "user", "content": prompt}]
+      messages: [{"role": "system", "content": systemContent}, {"role": "user", "content": prompt}],
+      max_tokens: 150
     });
 
     const response = {
